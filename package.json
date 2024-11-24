@@ -14,7 +14,7 @@
     "prepare": "husky",
     "spellcheck": "cspell src/**/*.{ts,tsx,css} --show-suggestions",
     "check-types": "npx tsc --noEmit ",
-     "test": "test"
+    "test": "test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -39,6 +39,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.2",
+    "sass": "^1.81.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vite-tsconfig-paths": "^4.3.2",

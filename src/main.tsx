@@ -4,6 +4,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./tailwind.css";
+import "./style.scss";
 
 const root = document.getElementById("root");
 if (root) {
