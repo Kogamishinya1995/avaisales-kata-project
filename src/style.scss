@@ -1,0 +1,10 @@
+@import './components/Header/header.scss';
+@import './components/Main/main.scss';
+@import './components/Main/Transfers/transfers.scss';
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
