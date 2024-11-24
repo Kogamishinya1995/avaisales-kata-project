@@ -2,7 +2,7 @@
 import { Formik, Form, Field } from "formik";
 
 const Transfers = () => (
-  <div className="transferBar">
+  <div className="transfer-bar">
     <h2>Количество пересадок</h2>
     <Formik
       initialValues={{
@@ -15,7 +15,7 @@ const Transfers = () => (
       onSubmit={() => {}}
     >
       {({ values, setFieldValue }) => (
-        <Form>
+        <Form className="transfer-bar__checkbox">
           <label htmlFor="transfer1">
             <Field
               type="checkbox"
