@@ -13,7 +13,8 @@
     "lint-staged": "lint-staged",
     "prepare": "husky",
     "spellcheck": "cspell src/**/*.{ts,tsx,css} --show-suggestions",
-    "check-types": "npx tsc --noEmit "
+    "check-types": "npx tsc --noEmit ",
+     "test": "test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
