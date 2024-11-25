@@ -2,10 +2,7 @@ import { Formik, Form, Field } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import {
   allTransfersChecked,
-  withoutTransfersChecked,
-  oneTransfersChecked,
-  twoTransfersChecked,
-  threeTransferTransfersChecked,
+  transfersChecked,
 } from "../../../slices/transfersSlice";
 
 const Transfers = () => {
@@ -41,7 +38,7 @@ const Transfers = () => {
               <Field
                 type="checkbox"
                 name="noTransfer"
-                onChange={() => dispatch(withoutTransfersChecked())}
+                onChange={() => dispatch(transfersChecked("withoutTransfers"))}
               />
               Без пересадок
             </label>
@@ -49,7 +46,7 @@ const Transfers = () => {
               <Field
                 type="checkbox"
                 name="transfer3"
-                onChange={() => dispatch(oneTransfersChecked())}
+                onChange={() => dispatch(transfersChecked("oneTransfer"))}
               />
               1 пересадка
             </label>
@@ -57,7 +54,7 @@ const Transfers = () => {
               <Field
                 type="checkbox"
                 name="transfer4"
-                onChange={() => dispatch(twoTransfersChecked())}
+                onChange={() => dispatch(transfersChecked("twoTransfer"))}
               />
               2 пересадки
             </label>
@@ -65,7 +62,7 @@ const Transfers = () => {
               <Field
                 type="checkbox"
                 name="transfer5"
-                onChange={() => dispatch(threeTransferTransfersChecked())}
+                onChange={() => dispatch(transfersChecked("threeTransfer"))}
               />
               3 пересадки
             </label>

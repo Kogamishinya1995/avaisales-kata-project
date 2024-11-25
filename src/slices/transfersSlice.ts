@@ -41,41 +41,8 @@ const transfersSlice = createSlice({
         state.threeTransfer = !state.threeTransfer;
       }
     },
-    withoutTransfersChecked: (state) => {
-      state.withoutTransfers = !state.withoutTransfers;
-
-      const allOthersChecked =
-        state.withoutTransfers &&
-        state.oneTransfer &&
-        state.twoTransfer &&
-        state.threeTransfer;
-
-      state.allTransfers = allOthersChecked ? true : false;
-    },
-    oneTransfersChecked: (state) => {
-      state.oneTransfer = !state.oneTransfer;
-
-      const allOthersChecked =
-        state.withoutTransfers &&
-        state.oneTransfer &&
-        state.twoTransfer &&
-        state.threeTransfer;
-
-      state.allTransfers = allOthersChecked ? true : false;
-    },
-    twoTransfersChecked: (state) => {
-      state.twoTransfer = !state.twoTransfer;
-
-      const allOthersChecked =
-        state.withoutTransfers &&
-        state.oneTransfer &&
-        state.twoTransfer &&
-        state.threeTransfer;
-
-      state.allTransfers = allOthersChecked ? true : false;
-    },
-    threeTransferTransfersChecked: (state) => {
-      state.threeTransfer = !state.threeTransfer;
+    transfersChecked: (state, actions) => {
+      state[actions.payload] = !state[actions.payload];
 
       const allOthersChecked =
         state.withoutTransfers &&
@@ -88,11 +55,5 @@ const transfersSlice = createSlice({
   },
 });
 
-export const {
-  allTransfersChecked,
-  withoutTransfersChecked,
-  oneTransfersChecked,
-  twoTransfersChecked,
-  threeTransferTransfersChecked,
-} = transfersSlice.actions;
+export const { allTransfersChecked, transfersChecked } = transfersSlice.actions;
 export default transfersSlice.reducer;
