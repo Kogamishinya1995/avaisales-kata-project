@@ -1,41 +1,47 @@
 import { Formik, Form, Field } from "formik";
 import { useSelector, useDispatch } from "react-redux";
-import { allTransfersChecked } from "../../../slices/transfers";
+import {
+  allTransfersChecked,
+  withoutTransfersChecked,
+  oneTransfersChecked,
+  twoTransfersChecked,
+  threeTransferTransfersChecked,
+} from "../../../slices/transfersSlice";
 
 const Transfers = () => {
-  const state = useSelector((state) => state.transfersReducer);
+  const transferState = useSelector((state) => state.transfersReducer);
   const dispatch = useDispatch();
-  console.log(state);
+  console.log(transferState);
 
   return (
     <div className="transfer-bar">
       <h2>Количество пересадок</h2>
       <Formik
         initialValues={{
-          transfer1: state.allTransfers,
-          transfer2: false,
-          transfer3: false,
-          transfer4: false,
-          transfer5: false,
+          transferAll: transferState.allTransfers,
+          noTransfer: transferState.withoutTransfers,
+          transfer3: transferState.oneTransfer,
+          transfer4: transferState.twoTransfer,
+          transfer5: transferState.threeTransfer,
         }}
         enableReinitialize
         onSubmit={() => {}}
       >
-        {({ values, setFieldValue }) => (
+        {({ values }) => (
           <Form className="transfer-bar__checkbox">
-            <label htmlFor="transfer1">
+            <label htmlFor="transferAll">
               <Field
                 type="checkbox"
-                name="transfer1"
+                name="transferAll"
                 onChange={() => dispatch(allTransfersChecked())}
               />
               Все
             </label>
-            <label htmlFor="transfer2">
+            <label htmlFor="noTransfer">
               <Field
                 type="checkbox"
-                name="transfer2"
-                onChange={() => setFieldValue("transfer2", !values.transfer2)}
+                name="noTransfer"
+                onChange={() => dispatch(withoutTransfersChecked())}
               />
               Без пересадок
             </label>
@@ -43,7 +49,7 @@ const Transfers = () => {
               <Field
                 type="checkbox"
                 name="transfer3"
-                onChange={() => setFieldValue("transfer3", !values.transfer3)}
+                onChange={() => dispatch(oneTransfersChecked())}
               />
               1 пересадка
             </label>
@@ -51,7 +57,7 @@ const Transfers = () => {
               <Field
                 type="checkbox"
                 name="transfer4"
-                onChange={() => setFieldValue("transfer4", !values.transfer4)}
+                onChange={() => dispatch(twoTransfersChecked())}
               />
               2 пересадки
             </label>
@@ -59,7 +65,7 @@ const Transfers = () => {
               <Field
                 type="checkbox"
                 name="transfer5"
-                onChange={() => setFieldValue("transfer5", !values.transfer5)}
+                onChange={() => dispatch(threeTransferTransfersChecked())}
               />
               3 пересадки
             </label>
