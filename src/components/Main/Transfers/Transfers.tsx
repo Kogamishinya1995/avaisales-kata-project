@@ -1,14 +1,16 @@
 import { Formik, Form, Field } from "formik";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../slices/index";
 import {
   allTransfersChecked,
   transfersChecked,
 } from "../../../slices/transfersSlice";
 
 const Transfers = () => {
-  const transferState = useSelector((state) => state.transfersReducer);
+  const transferState = useSelector(
+    (state: RootState) => state.transfersReducer
+  );
   const dispatch = useDispatch();
-  console.log(transferState);
 
   return (
     <div className="transfer-bar">
@@ -24,7 +26,7 @@ const Transfers = () => {
         enableReinitialize
         onSubmit={() => {}}
       >
-        {({ values }) => (
+        {() => (
           <Form className="transfer-bar__checkbox">
             <label htmlFor="transferAll">
               <Field

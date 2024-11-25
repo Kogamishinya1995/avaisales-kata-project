@@ -1,5 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export interface TransfersState {
+  allTransfers: boolean;
+  withoutTransfers: boolean;
+  oneTransfer: boolean;
+  twoTransfer: boolean;
+  threeTransfer: boolean;
+}
+
+interface TransferActionPayload {
+  allTransfers: boolean;
+  withoutTransfers: boolean;
+  oneTransfer: boolean;
+  twoTransfer: boolean;
+  threeTransfer: boolean;
+}
+
+type ActionTypes = {
+  type: string;
+  payload: keyof TransferActionPayload;
+};
+
 const initialState = {
   allTransfers: false,
   withoutTransfers: false,
@@ -13,8 +34,6 @@ const transfersSlice = createSlice({
   initialState,
   reducers: {
     allTransfersChecked: (state) => {
-      console.log(Object.values(state));
-
       const oneOfAllChecked =
         state.withoutTransfers ||
         state.oneTransfer ||
@@ -41,7 +60,7 @@ const transfersSlice = createSlice({
         state.threeTransfer = !state.threeTransfer;
       }
     },
-    transfersChecked: (state, actions) => {
+    transfersChecked: (state, actions: ActionTypes) => {
       state[actions.payload] = !state[actions.payload];
 
       const allOthersChecked =

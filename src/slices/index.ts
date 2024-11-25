@@ -1,5 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import transfersReducer from "./transfersSlice";
+import transfersReducer, { TransfersState } from "./transfersSlice";
+
+export type RootState = {
+  transfersReducer: TransfersState;
+};
 
 export default configureStore({
   reducer: {
