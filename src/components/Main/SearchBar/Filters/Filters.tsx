@@ -1,30 +1,35 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import React, { useState } from "react";
+import { MouseEvent } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setFilter } from "../../../../slices/filterSlice";
+import { RootState } from "../../../../slices/index";
 
 const Filters = () => {
-  const [selected, setSelected] = useState(null);
+  const filterState = useSelector((state: RootState) => state.filter);
+  const dispatch = useDispatch();
 
-  const handleChange = (event, newSelected) => {
-    if (newSelected !== null) {
-      setSelected(newSelected);
-    }
+  const handleChange = (
+    _event: MouseEvent<HTMLElement>,
+    newSelected: string
+  ) => {
+    dispatch(setFilter(newSelected));
   };
-
+  console.log(filterState);
   return (
     <ToggleButtonGroup
-      value={selected}
+      value={filterState.value}
       exclusive
       onChange={handleChange}
       aria-label="text alignment"
       className="search-bar__filters"
     >
-      <ToggleButton value="button1" aria-label="left aligned">
+      <ToggleButton value="cheepest" aria-label="left aligned">
         самый дешевый
       </ToggleButton>
-      <ToggleButton value="button2" aria-label="centered">
+      <ToggleButton value="fastest" aria-label="centered">
         самый быстрый
       </ToggleButton>
-      <ToggleButton value="button3" aria-label="right aligned">
+      <ToggleButton value="optimal" aria-label="right aligned">
         оптимальный
       </ToggleButton>
     </ToggleButtonGroup>

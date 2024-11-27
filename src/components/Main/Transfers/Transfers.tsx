@@ -7,9 +7,7 @@ import {
 } from "../../../slices/transfersSlice";
 
 const Transfers = () => {
-  const transferState = useSelector(
-    (state: RootState) => state.transfersReducer
-  );
+  const transferState = useSelector((state: RootState) => state.transfers);
   const dispatch = useDispatch();
 
   return (

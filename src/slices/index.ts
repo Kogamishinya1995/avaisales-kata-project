@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
+import filterReducer, { FilterState } from "./filterSlice";
 import transfersReducer, { TransfersState } from "./transfersSlice";
 
 export type RootState = {
-  transfersReducer: TransfersState;
+  transfers: TransfersState;
+  filter: FilterState;
 };
 
 export default configureStore({
   reducer: {
-    transfersReducer,
+    transfers: transfersReducer,
+    filter: filterReducer,
   },
 });
