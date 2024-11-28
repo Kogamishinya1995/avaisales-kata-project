@@ -1,6 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { MouseEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { FilterState } from "@AppTypes/commonTypes";
 import { setFilter } from "../../../../slices/filterSlice";
 import { RootState } from "../../../../slices/index";
 

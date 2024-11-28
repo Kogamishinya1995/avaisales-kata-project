@@ -1,16 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface FilterState {
-  value: null | string;
-}
-
-// interface FilterActionPayload {
-//   value: string;
-// }
-
 const initialState = {
   value: null,
 };
+
+export interface FilterState {
+  value: null | string;
+}
 
 const filterSlice = createSlice({
   name: "filter",
