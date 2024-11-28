@@ -42,7 +42,7 @@ export const fetchSearchId = createAsyncThunk(
   "tickets/fetchSearchId",
   async (): Promise<SearchIdResponse> => {
     const response = await axios.get<SearchIdResponse>(
-      "https://front-test.dev.aviasales.ru/search"
+      "https://aviasales-test-api.kata.academy/search"
     );
     return response.data;
   }
@@ -87,7 +87,7 @@ const ticketSlice = createSlice({
       })
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.loadingStatus = "succeeded";
-        state.tickets = [...state.tickets, ...action.payload.tickets]; // Добавляем новые билеты
+        state.tickets = [...state.tickets, ...action.payload.tickets];
       })
       .addCase(fetchTickets.rejected, (state, action) => {
         state.loadingStatus = "failed";
