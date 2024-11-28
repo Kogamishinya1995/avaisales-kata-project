@@ -27,7 +27,7 @@ export interface Ticket {
 
 export interface TicketsResponse {
   tickets: Ticket[];
-  stopCount: number;
+  stop: boolean;
 }
 
 export const ticketsApi = createApi({

@@ -1,21 +1,66 @@
-import { useGetSearchIdQuery } from "../../../../slices/ticketsAPI";
+import { useState, useEffect } from "react";
+import {
+  useGetSearchIdQuery,
+  useGetTicketsQuery,
+  Ticket,
+} from "../../../../slices/ticketsAPI";
 
 const SearchResults = () => {
-  const { data, error, isLoading, refetch } = useGetSearchIdQuery(null);
+  const [searchId, setSearchId] = useState<string>("");
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [isSearchComplete, setIsSearchComplete] = useState(false);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const { data: searchIdData } = useGetSearchIdQuery(null);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+  useEffect(() => {
+    if (searchIdData?.searchId) {
+      setSearchId(searchIdData.searchId);
+    }
+  }, [searchIdData]);
+
+  const {
+    data: ticketsData,
+    refetch: fetchTickets,
+    isFetching,
+    error,
+  } = useGetTicketsQuery(searchId, {
+    skip: !searchId || isSearchComplete,
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (ticketsData) {
+          setTickets((prev) => [...prev, ...ticketsData.tickets]);
+
+          if (ticketsData.stop) {
+            setIsSearchComplete(true);
+          } else {
+            await fetchTickets();
+          }
+        }
+
+        if (error && !isSearchComplete) {
+          await fetchTickets();
+        }
+      } catch (err) {
+        console.error("Ошибка при запросе билетов:", err);
+      }
+    };
+
+    void fetchData();
+  }, [ticketsData, error]);
 
   return (
     <div className="search-bar__results">
       <h2>Search Results</h2>
-      <p>Search ID: {data?.searchId}</p>
-      <button onClick={refetch}>тестовое</button>
+      <ul>
+        {tickets.map((ticket, index) => (
+          <li key={index}>{JSON.stringify(ticket)}</li>
+        ))}
+      </ul>
+      {isFetching && <p>Loading...</p>}
+      {isSearchComplete && <p>Поиск завершён!</p>}
     </div>
   );
 };

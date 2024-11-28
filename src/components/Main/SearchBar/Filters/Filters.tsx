@@ -14,7 +14,7 @@ const Filters = () => {
   ) => {
     dispatch(setFilter(newSelected));
   };
-  console.log(filterState);
+
   return (
     <ToggleButtonGroup
       value={filterState.value}
