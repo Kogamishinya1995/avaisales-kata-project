@@ -3,7 +3,7 @@ import axios from "axios";
 import {
   SearchIdResponse,
   TicketsResponse,
-  Ticket,
+  TicketType,
 } from "@AppTypes/commonTypes";
 
 export const fetchSearchId = createAsyncThunk(
@@ -32,7 +32,7 @@ const ticketSlice = createSlice({
     loadingStatus: "idle" as "idle" | "loading" | "succeeded" | "failed",
     error: null as string | null,
     searchId: null as string | null,
-    tickets: [] as Ticket[],
+    tickets: [] as TicketType[],
   },
   reducers: {},
   extraReducers: (builder) => {

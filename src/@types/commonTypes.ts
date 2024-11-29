@@ -5,7 +5,7 @@ export interface FilterState {
   value: null | string;
 }
 
-export interface Ticket {
+export interface TicketType {
   price: number;
   carrier: string;
   segments: [
