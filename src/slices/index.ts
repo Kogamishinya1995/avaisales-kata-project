@@ -9,10 +9,14 @@ export type RootState = {
   tickets: TicketsState;
 };
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     transfers: transfersReducer,
     filter: filterReducer,
     tickets: ticketReducer,
   },
 });
+
+export type AppDispatch = typeof store.dispatch;
+
+export default store;

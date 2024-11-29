@@ -70,16 +70,14 @@ const ticketSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchSearchId.pending, (state) => {
-        state.loadingStatus = "loading";
         state.error = null;
       })
       .addCase(fetchSearchId.fulfilled, (state, action) => {
         state.loadingStatus = "succeeded";
         state.searchId = action.payload.searchId;
       })
-      .addCase(fetchSearchId.rejected, (state, action) => {
+      .addCase(fetchSearchId.rejected, (state) => {
         state.loadingStatus = "failed";
-        state.error = action.error.message || "Failed to fetch search ID";
       })
       .addCase(fetchTickets.pending, (state) => {
         state.loadingStatus = "loading";
