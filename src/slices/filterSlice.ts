@@ -4,10 +4,6 @@ const initialState = {
   value: null,
 };
 
-export interface FilterState {
-  value: null | string;
-}
-
 const filterSlice = createSlice({
   name: "filter",
   initialState,

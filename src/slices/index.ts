@@ -1,7 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import filterReducer, { FilterState } from "./filterSlice";
-import ticketReducer, { TicketsState } from "./ticketsSlice";
-import transfersReducer, { TransfersState } from "./transfersSlice";
+import {
+  FilterState,
+  TicketsState,
+  TransfersState,
+} from "@AppTypes/commonTypes";
+import filterReducer from "./filterSlice";
+import ticketReducer from "./ticketsSlice";
+import transfersReducer from "./transfersSlice";
 
 export type RootState = {
   transfers: TransfersState;

@@ -1,25 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-export interface TransfersState {
-  allTransfers: boolean;
-  withoutTransfers: boolean;
-  oneTransfer: boolean;
-  twoTransfer: boolean;
-  threeTransfer: boolean;
-}
-
-interface TransferActionPayload {
-  allTransfers: boolean;
-  withoutTransfers: boolean;
-  oneTransfer: boolean;
-  twoTransfer: boolean;
-  threeTransfer: boolean;
-}
-
-type ActionTypes = {
-  type: string;
-  payload: keyof TransferActionPayload;
-};
+import { ActionTypes } from "@AppTypes/commonTypes";
 
 const initialState = {
   allTransfers: false,

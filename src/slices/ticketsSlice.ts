@@ -1,42 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-export interface Ticket {
-  price: number;
-  carrier: string;
-  segments: [
-    {
-      origin: string;
-      destination: string;
-      date: string;
-      stops: string[];
-      duration: number;
-    },
-    {
-      origin: string;
-      destination: string;
-      date: string;
-      stops: string[];
-      duration: number;
-    },
-  ];
-}
-
-export interface TicketsState {
-  loadingStatus: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
-  searchId: string | null;
-  tickets: Ticket[];
-}
-
-export interface SearchIdResponse {
-  searchId: string;
-}
-
-export interface TicketsResponse {
-  tickets: Ticket[];
-  stop: boolean;
-}
+import {
+  SearchIdResponse,
+  TicketsResponse,
+  Ticket,
+} from "@AppTypes/commonTypes";
 
 export const fetchSearchId = createAsyncThunk(
   "tickets/fetchSearchId",

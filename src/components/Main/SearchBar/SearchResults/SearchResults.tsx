@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Ticket } from "@AppTypes/commonTypes";
 import { RootState, AppDispatch } from "../../../../slices/index";
-import {
-  fetchSearchId,
-  fetchTickets,
-  Ticket,
-} from "../../../../slices/ticketsSlice";
+import { fetchSearchId } from "../../../../slices/ticketsSlice";
+import { fetchAllTickets } from "../../../../utils/fetchAllTickets";
 
 const SearchResults = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -14,29 +12,15 @@ const SearchResults = () => {
     (state: RootState) => state.tickets
   );
 
-  const fetchAllTickets = async (currentSearchId: string) => {
-    if (loadingStatus === "loading") return;
-
-    try {
-      const result = await dispatch(fetchTickets(currentSearchId)).unwrap();
-      if (!result.stop) {
-        await fetchAllTickets(currentSearchId);
-      }
-    } catch (err) {
-      console.error("tickets request error", err);
-      await fetchAllTickets(currentSearchId);
-    }
-  };
-
   useEffect(() => {
     void dispatch(fetchSearchId());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (searchId && loadingStatus === "succeeded" && tickets.length === 0) {
-      void fetchAllTickets(searchId);
+      void fetchAllTickets(searchId, dispatch, loadingStatus);
     }
-  }, [searchId, loadingStatus, tickets.length]);
+  }, [searchId, loadingStatus, tickets.length, dispatch]);
 
   return (
     <div className="search-bar__results">
