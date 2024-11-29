@@ -2,27 +2,6 @@ import { parseISO, add, addMinutes, format } from "date-fns";
 import uniqueId from "lodash/uniqueId";
 import { TicketType } from "@AppTypes/commonTypes";
 
-const test = {
-  price: 75440,
-  carrier: "U6",
-  segments: [
-    {
-      origin: "MOW",
-      destination: "HKT",
-      date: "2025-05-22T12:40:21.513Z",
-      duration: 1216,
-      stops: ["IST", "DOH", "DOH"],
-    },
-    {
-      origin: "HKT",
-      destination: "MOW",
-      date: "2026-05-15T19:00:10.984Z",
-      duration: 796,
-      stops: ["DEL"],
-    },
-  ],
-};
-
 const formatFlightTime = (startDate: string, duration: number) => {
   const start = parseISO(startDate);
   const end = add(start, { minutes: duration });
@@ -31,7 +10,11 @@ const formatFlightTime = (startDate: string, duration: number) => {
   return `${startTime} – ${endTime}`;
 };
 
-const Ticket = (ticket: TicketType) => (
+interface TicketProps {
+  ticket: TicketType;
+}
+
+const Ticket = ({ ticket }: TicketProps) => (
   <div className="ticket">
     <p>{`${ticket.price.toString()}₽`}</p>
     <img src={`http://pics.avs.io/200/200/${ticket.carrier}.png`} alt="" />

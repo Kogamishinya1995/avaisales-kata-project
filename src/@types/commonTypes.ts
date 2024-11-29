@@ -30,7 +30,7 @@ export interface TicketsState {
   loadingStatus: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   searchId: string | null;
-  tickets: Ticket[];
+  tickets: TicketType[];
 }
 
 export interface SearchIdResponse {
@@ -38,7 +38,7 @@ export interface SearchIdResponse {
 }
 
 export interface TicketsResponse {
-  tickets: Ticket[];
+  tickets: TicketType[];
   stop: boolean;
 }
 
