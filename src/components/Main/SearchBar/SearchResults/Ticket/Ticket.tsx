@@ -28,7 +28,7 @@ const Ticket = ({ ticket }: TicketProps) => (
         <p>В пути</p>
         <p>
           {item.stops.length}{" "}
-          {`пересад${item.stops.length === 1 ? `ки` : `ка`}`}
+          {`пересад${item.stops.length === 0 ? `ок` : item.stops.length > 1 ? `ки` : `ка`}`}
         </p>
         <p>{formatFlightTime(item.date, item.duration)} </p>
         <p>{format(addMinutes(new Date(0), item.duration), "H:mm")}</p>

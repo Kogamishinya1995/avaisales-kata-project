@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ActionTypes } from "@AppTypes/commonTypes";
 
 const initialState = {
-  allTransfers: false,
-  withoutTransfers: false,
-  oneTransfer: false,
-  twoTransfer: false,
-  threeTransfer: false,
+  allTransfers: true,
+  withoutTransfers: true,
+  oneTransfer: true,
+  twoTransfer: true,
+  threeTransfer: true,
 };
 
 const transfersSlice = createSlice({

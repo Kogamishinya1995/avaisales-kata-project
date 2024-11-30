@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import BeatLoader from "react-spinners/BeatLoader";
 import { TicketType } from "@AppTypes/commonTypes";
 import getUniqueTransfers from "@Utils/getUniqueTransfers";
+import sortedTickets from "@Utils/sortedTickets";
+import Ticket from "./Ticket/Ticket";
 import { RootState, AppDispatch } from "../../../../slices/index";
 import { fetchSearchId } from "../../../../slices/ticketsSlice";
 import { fetchAllTickets } from "../../../../utils/fetchAllTickets";
@@ -20,7 +22,17 @@ const SearchResults = () => {
     [transferState]
   );
 
-  console.log(uniqueTransfers);
+  const transferFilteredState = useSelector((state: RootState) =>
+    state.tickets.tickets.filter((ticket) =>
+      ticket.segments.every((segment) =>
+        uniqueTransfers.includes(segment.stops.length)
+      )
+    )
+  );
+
+  const filterState = useSelector((state: RootState) => state.filter.value);
+
+  const filteredTickets = sortedTickets(transferFilteredState, filterState);
 
   useEffect(() => {
     if (!searchId) {
@@ -47,15 +59,13 @@ const SearchResults = () => {
         />
       )}
       {error && <p>Error: {error}</p>}
-      {tickets.length > 0 ? (
+      {filteredTickets.length > 0 ? (
         <ul>
-          {tickets
-            .filter((_, index) => index < 5)
+          {filteredTickets
+            .filter((_, index) => index < 10)
             .map((ticket: TicketType, index) => (
               <li key={index}>
-                <div>{ticket.carrier}</div>
-                <div>{ticket.price}</div>
-                <div>{ticket.segments[0].stops.length}</div>
+                <Ticket ticket={ticket} />
               </li>
             ))}
         </ul>
