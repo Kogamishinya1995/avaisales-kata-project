@@ -1,5 +1,5 @@
 import SearchBar from "@Components/Main/SearchBar/SearchBar";
-import Transfers from "@Components/Main/Transfers/Transfers";
+import Transfers from "@Components/Main/transfers/Transfers";
 
 const Main = () => (
   <div className="main">

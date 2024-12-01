@@ -1,8 +1,8 @@
-@import './components/Header/header.scss';
-@import './components/Main/main.scss';
-@import './components/Main/Transfers/transfers.scss';
-@import './components/Main/SearchBar/search-bar.scss';
-@import './components/Main/SearchBar/SearchResults/Ticket/ticket.scss';
+@import './components/header/header.scss';
+@import './components/main/main.scss';
+@import './components/main/transfers/transfers.scss';
+@import './components/main/searchBar/searchBar.scss';
+@import './components/main/searchBar/searchResults/ticket/ticket.scss';
 
 body {
     margin: 0;

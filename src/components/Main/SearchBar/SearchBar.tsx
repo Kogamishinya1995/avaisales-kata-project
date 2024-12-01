@@ -1,4 +1,4 @@
-import Filters from "./Filters/Filters";
+import Filters from "./filters/Filters";
 import SearchResults from "./SearchResults/SearchResults";
 
 const SearchBar = () => (

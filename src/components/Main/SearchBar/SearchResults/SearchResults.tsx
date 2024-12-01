@@ -5,7 +5,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { TicketType } from "@AppTypes/commonTypes";
 import getUniqueTransfers from "@Utils/getUniqueTransfers";
 import sortedTickets from "@Utils/sortedTickets";
-import Ticket from "./Ticket/Ticket";
+import Ticket from "./ticket/Ticket";
 import { RootState, AppDispatch } from "../../../../slices/index";
 import { fetchSearchId } from "../../../../slices/ticketsSlice";
 import { fetchAllTickets } from "../../../../utils/fetchAllTickets";

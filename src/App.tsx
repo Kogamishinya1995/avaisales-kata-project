@@ -1,4 +1,4 @@
-import Header from "@Components/Header/Header";
+import Header from "@Components/header/Header";
 import Main from "@Components/Main/main";
 
 const App = () => (

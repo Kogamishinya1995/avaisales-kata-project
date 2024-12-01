@@ -1,6 +1,6 @@
 const Header = () => (
   <div className="header">
-    <img src="src\components\Header\Logo.png" alt="" />
+    <img src="src\components\Header\logo.png" alt="" />
   </div>
 );
 

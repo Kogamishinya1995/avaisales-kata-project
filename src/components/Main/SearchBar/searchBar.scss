@@ -5,6 +5,10 @@
 
 .search-bar__results-list {
     margin: 10px;
+   
+    ul{
+        list-style: none;
+    }
 }
 
 .search-bar__results-container {
