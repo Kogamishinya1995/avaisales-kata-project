@@ -1,4 +1,5 @@
-import { useEffect, useMemo } from "react";
+import { Button } from "@mui/material";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import BeatLoader from "react-spinners/BeatLoader";
 import { TicketType } from "@AppTypes/commonTypes";
@@ -46,25 +47,29 @@ const SearchResults = () => {
     }
   }, [searchId, loadingStatus, tickets.length, dispatch]);
 
+  const [ticketsNumber, setTicketsNumber] = useState(5);
+
   return (
-    <div className="search-bar__results">
+    <div className="search-bar__results-container">
       {loadingStatus === "loading" && (
-        <BeatLoader
-          color={"#89BAFF"}
-          size={50}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-          loading={true}
-          speedMultiplier={1}
-        />
+        <div className="search-bar__loader">
+          <BeatLoader
+            color={"#89BAFF"}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            loading={true}
+            speedMultiplier={1}
+          />
+        </div>
       )}
       {error && <p>Error: {error}</p>}
       {filteredTickets.length > 0 ? (
-        <ul>
+        <ul className="search-bar__results-list">
           {filteredTickets
-            .filter((_, index) => index < 10)
+            .filter((_, index) => index < ticketsNumber)
             .map((ticket: TicketType, index) => (
-              <li key={index}>
+              <li className="search-bar__ticket" key={index}>
                 <Ticket ticket={ticket} />
               </li>
             ))}
@@ -72,6 +77,18 @@ const SearchResults = () => {
       ) : (
         !error && loadingStatus !== "loading" && <p>No tickets found</p>
       )}
+      <div className="search-bar__button">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            setTicketsNumber(ticketsNumber + 5);
+          }}
+          sx={{ marginTop: 2 }}
+        >
+          Показать еще 5 билетов
+        </Button>
+      </div>
     </div>
   );
 };

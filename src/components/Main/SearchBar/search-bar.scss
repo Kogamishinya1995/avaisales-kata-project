@@ -2,3 +2,48 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.search-bar__results-list {
+    margin: 10px;
+}
+
+.search-bar__results-container {
+    margin-left: auto;
+    @media screen and (max-width: 1024px)  {
+       padding-left: 240px;
+    }
+    @media screen and (max-width: 600px)  {
+        padding-left: 180px;
+     }
+}
+
+.search-bar__filters {
+    padding-left: 50px;
+    @media screen and (max-width: 1300px) {
+        padding-left: 300px;
+    }
+    @media screen and (max-width: 1023px) {
+        padding-left: 170px;
+    }
+    @media screen and (max-width: 800px) {
+        padding-left: 240px;
+    }
+    @media screen and (max-width: 600px) {
+        padding-left: 160px;
+    }
+}
+
+.search-bar__loader {
+    padding-left: 200px;
+    padding-top: 30px;
+}
+
+.search-bar__button {
+        padding-left: 160px;
+    @media screen and (max-width: 1024px) {
+        padding-left: 140px;
+    }
+    @media screen and (max-width: 800px) {
+        padding-left: 100px;
+    }
+}
